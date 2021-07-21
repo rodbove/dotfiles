@@ -83,7 +83,7 @@ windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 
 -- myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
-myWorkspaces = ["sys", "dev", "www", "doc", "ssh", "rus", "app", "nil", "dump"]
+myWorkspaces = ["sys", "dev", "www", "app", "ssh", "rus", "misc", "doc", "nil"]
 myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..]
 
 clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
@@ -397,10 +397,10 @@ main = do
       , startupHook        = myStartupHook
       , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x                           -- Receiving xmobar events
-              , ppCurrent = xmobarColor "#95ffa4" "" . wrap "•" "•"           -- Current workspace
-              , ppVisible = xmobarColor "#95ffa4" "" . clickable              -- Visible but not current workspace, useful for multiple displays
-              , ppHidden = xmobarColor "#65B2FF" "" . wrap " " " " . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#c792ea" "" . wrap " " " "  . clickable     -- Hidden workspaces (no windows)
+              , ppCurrent = xmobarColor "#358DC0" "" . wrap "•" "•"           -- Current workspace
+              , ppVisible = xmobarColor "#358DC0" "" . clickable              -- Visible but not current workspace, useful for multiple displays
+              , ppHidden = xmobarColor "#CA9265" "" . wrap " " " " . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#97A8C2" "" . wrap " " " "  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
