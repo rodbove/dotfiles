@@ -94,7 +94,7 @@ myDmenuCom = "dmenu_run -nb '#292F37' -nf '#876ec0' -fn 'JuliaMono'"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#876ec0"
+myFocusedBorderColor = "#358DC0"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -397,7 +397,7 @@ main = do
       , startupHook        = myStartupHook
       , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x                           -- Receiving xmobar events
-              , ppCurrent = xmobarColor "#358DC0" "" . wrap "•" "•"           -- Current workspace
+              , ppCurrent = xmobarColor "#358DC0" "" . wrap "[" "]"           -- Current workspace
               , ppVisible = xmobarColor "#358DC0" "" . clickable              -- Visible but not current workspace, useful for multiple displays
               , ppHidden = xmobarColor "#CA9265" "" . wrap " " " " . clickable -- Hidden workspaces
               , ppHiddenNoWindows = xmobarColor "#97A8C2" "" . wrap " " " "  . clickable     -- Hidden workspaces (no windows)
