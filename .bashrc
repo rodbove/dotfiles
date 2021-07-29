@@ -50,6 +50,5 @@ alias dcu="docker-compose up"
 alias dcud="docker-compose up -d"
 alias dcd="docker-compose down"
 alias dps="docker ps"
-# Kubernetes
-alias kubelkp="kubectl config use-context arn:aws:eks:us-east-1:407910189591:cluster/eks-us-east-1-production"
 alias kubekind="kubectl config use-context kind-kind"
+
