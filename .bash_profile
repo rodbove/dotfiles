@@ -1,6 +1,7 @@
 #
 # ~/.bash_profile
 #
+export PATH=$PATH:/usr/bin/lazybox:/home/rodrigo/.local/bin/
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 . "$HOME/.cargo/env"
