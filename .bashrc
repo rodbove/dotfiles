@@ -13,7 +13,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$PATH:/home/rodrigo/bin
 
-source '/home/rodrigo/lib/azure-cli/az.completion'
 . "$HOME/.cargo/env"
 
 # Replace a few ls commands with exa
