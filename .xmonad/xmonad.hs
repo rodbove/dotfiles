@@ -364,7 +364,7 @@ myManageHook = composeAll
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "picom --fade-delta=0 --no-fading-openclose &"
-    spawnOnce "setxkbmap -option caps:super" -- remaps Caps Lock key to Super
+    spawnOnce "kmonad ~/.dotfiles/workman.kbd" -- starts KMonad setup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with defined settings.
