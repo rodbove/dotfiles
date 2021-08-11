@@ -364,7 +364,7 @@ myManageHook = composeAll
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "picom --fade-delta=0 --no-fading-openclose &"
-    spawn "kmonad ~/.dotfiles/workman.kbd" -- starts KMonad setup
+    spawn "killall kmonad; kmonad ~/.dotfiles/workman.kbd" -- starts/restarts KMonad on XMonad startup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with defined settings.
