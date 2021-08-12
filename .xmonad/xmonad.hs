@@ -46,7 +46,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "kitty"
+myTerminal      = "alacritty"
 
 myFont :: String
 myFont = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
@@ -390,10 +390,10 @@ main = do
       , startupHook        = myStartupHook
       , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x                           -- Receiving xmobar events
-              , ppCurrent = xmobarColor "#358DC0" "" . wrap "[" "]"           -- Current workspace
+              , ppCurrent = xmobarColor "#358DC0" "" . wrap "" " "           -- Current workspace
               , ppVisible = xmobarColor "#358DC0" "" . clickable              -- Visible but not current workspace, useful for multiple displays
-              , ppHidden = xmobarColor "#CA9265" "" . wrap " " " " . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#97A8C2" "" . wrap " " " "  . clickable     -- Hidden workspaces (no windows)
+              , ppHidden = xmobarColor "#CA9265" "" . wrap "" " " . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#97A8C2" "" . wrap "" " "  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace

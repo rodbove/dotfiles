@@ -13,16 +13,11 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
        , persistent = True
        , hideOnStart = False
        , iconRoot = "/home/rodrigo/.config/xmobar/xpm/" -- default: "."
-       , commands = [ Run Weather "SBGR" ["-t","SP: <tempC> C",
-                                          "-L","18","-H","25",
-                                          "--normal","#95FFA4",
-                                          "--high","red",
-                                          "--low","#65B2FF"] 36000
-                    , Run Cpu ["-L","3","-H","50",
+       , commands = [ Run Cpu ["-L","3","-H","50",
                                "--normal","#95FFA4","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Com "echo" ["<fc=#666666>|</fc>"] "|" 0
-                    , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 300
+                    , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 30
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "<fn=1>\xf073 </fn> %b %_d %Y %H:%M" "date" 10
                     , Run UnsafeStdinReader
@@ -30,5 +25,5 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <icon=%dynamicicon%/> %|% %UnsafeStdinReader%}\
-                    \{ <icon=workstation.xpm/> %cpu% %|% %memory% %|% %SBGR% %|% <fc=#65B2FF>%date%</fc> "
+                    \{ <icon=workstation.xpm/> %cpu% %|% %memory% %|% <fc=#65B2FF>%date%</fc> "
        }
