@@ -43,25 +43,57 @@
 )
 
 (defalias
-  kil S-M-v
-  uti (layer-switch utils)
+  ;; layout togglers
   one (layer-switch default)
+  uti (layer-switch utils) ;; switches to utils layer
+  tut (layer-toggle utils) ;; toggles to utils layer
+  qwt (layer-switch qwerty)
+
+  ;; Custom keybinds
+  kil S-M-v
+
+  ;; Keybinds for changing workspaces on XMonad
+  m1 M-1
+  m2 M-2
+  m3 M-3
+  m4 M-4
+  m5 M-5
+  m6 M-6
+  m7 M-7
+  m8 M-8
+  m9 M-9
+
+  ;; Utils (or not)
+  ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
+  mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
+  dsl (tap-macro w l v n k e spc s k e b ; v k spc m s ) ;; this makes sense with workman layout
+  dlg (tap-macro w l v n k e spc s k e b ; v k spc m l g s ) ;; this makes sense with workman layout
 )
 
 (deflayer default
-  esc  f1   @uti f3   f4   f5   f6   f7   f8   f9   f10  f11  @kil       kprt slck pause
+  esc  @uti @qwt f3   f4   f5   f6   f7   f8   f9   f10  f11  f12       kprt slck pause
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
   lmet a    s    h    t    g    y    n    e    o    i    '    ret
   lsft z    x    m    c    v    k    l    ,    .    /    rsft                 up
+  lctl lmet lalt           @ld            ralt rmet cmp  rctl            left down rght
+)
+
+;; they forced me; mostly for reference when "translating" words as if they were typed in qwerty
+(deflayer qwerty
+  esc  @one f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12       kprt slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
+  lmet a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
 
 (deflayer utils
-  _    @one _    _    _    _    _    _    _    _    _    _    _          _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
-  lmet _    _    _    _    _    _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _                    _
-  _    _    _              _              _    _    _    _               _    _    _
+  esc  @one @qwt f3   f4   f5   f6   f7   f8   f9   f10  @dsl  @kil       kprt slck pause
+  grv  @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  0    -    =    bspc  ins  home pgup
+  tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
+  lmet a    @dsl h    t    g    y    n    e    o    @mip '    ret
+  lsft z    x    m    c    v    k    @dlg ,    .    /    rsft                 up
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
