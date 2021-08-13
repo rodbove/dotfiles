@@ -68,6 +68,9 @@
   ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
   mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
 
+  ;; Specific for apps
+  ctb (tap-next C-t lctl) ;; Actually types ctrl + b on tmux
+
   ;; DOCKER
   dsl (tap-macro w l v n k e spc s k e b ; v k spc m s) ;; docker service ls
   dlg (tap-macro w l v n k e spc s k e b ; v k spc m l g s spc - u spc - f spc) ;; docker service logs -f -t
@@ -79,7 +82,7 @@
   tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
   lmet a    s    h    t    g    y    n    e    o    i    '    ret
   lsft z    x    m    c    v    k    l    ,    .    /    rsft                 up
-  lctl lmet lalt           @ld            ralt rmet cmp  rctl            left down rght
+  @ctb lmet lalt           @ld            ralt rmet cmp  rctl            left down rght
 )
 
 ;; they forced me; mostly for reference when "translating" words as if they were typed in qwerty
