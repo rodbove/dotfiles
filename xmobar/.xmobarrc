@@ -17,7 +17,7 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
                                "--normal","#95FFA4","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Com "echo" ["<fc=#666666>|</fc>"] "|" 0
-                    , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 30
+                    , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 1
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "<fn=1>\xf073 </fn> %b %_d %Y %H:%M" "date" 10
                     , Run UnsafeStdinReader
