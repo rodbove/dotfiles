@@ -67,9 +67,14 @@
   ;; these weird tap-macros make sense with workman layout (you wont need to type the macro this way if you're using qwerty)
   ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
   mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
+  tmc (cmd-button "nohup alacritty -e tmux attach -t code &")
   xcp C-S-l
+
+  ;; Work environment
   sub (cmd-button "xclip -o | xargs lkpu -s | awk -F '>' '{print $2}' | awk '{ sub(/^[ \t]+/, \"\"); print}' | xclip -selection clipboard") ;; Pipes selected ObjectId into cli for getting data (work use only)
+  sid (cmd-button "xclip -o | xargs lkpu -n | awk -F '>' '{print $2}' | awk '{ sub(/^[ \t]+/, \"\"); print}' | xclip -selection clipboard") ;; Pipes selected name into cli for getting the ObjectId (work use only)
   wsub #(@xcp @sub)
+  wid #(@xcp @sid)
 
   ;; Specific for apps
   ctb (tap-next C-t lctl) ;; Actually types ctrl + b on tmux
@@ -80,7 +85,7 @@
 )
 
 (deflayer default
-  esc  @uti @qwt f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        kprt slck pause
+  esc  @uti @qwt f3   f4   f5   f6   f7   f8   f9   f10  @wsub @wid      kprt slck pause
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
   tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
   lmet a    s    h    t    g    y    n    e    o    i    '    ret
@@ -101,8 +106,8 @@
 (deflayer utils
   esc  @one @qwt f3   f4   f5   f6   f7   f8   f9   f10  @dsl  @kil       kprt slck pause
   grv  @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  0    -    =    bspc  ins  home pgup
-  tab  @kil d    r    w    b    j    f    u    p    @mip [    ]    \     del  end  pgdn
+  tab  @kil d    r    w    b    j    @tmc u    p    @mip [    ]    \     del  end  pgdn
   lmet a    @dsl h    t    g    y    n    e    o    i    '    ret
-  lsft @wsub x   @dlg c    v    k    l    ,    .    /    rsft                 up
+  lsft z    x   @dlg  c    v    k    l    ,    .    /    rsft                 up
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
