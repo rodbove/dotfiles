@@ -67,6 +67,9 @@
   ;; these weird tap-macros make sense with workman layout (you wont need to type the macro this way if you're using qwerty)
   ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
   mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
+  xcp C-S-l
+  sub (cmd-button "xclip -o | xargs lkpu -s | awk -F '>' '{print $2}' | awk '{ sub(/^[ \t]+/, \"\"); print}' | xclip -selection clipboard") ;; Pipes selected ObjectId into cli for getting data (work use only)
+  wsub #(@xcp @sub)
 
   ;; Specific for apps
   ctb (tap-next C-t lctl) ;; Actually types ctrl + b on tmux
@@ -100,6 +103,6 @@
   grv  @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  0    -    =    bspc  ins  home pgup
   tab  @kil d    r    w    b    j    f    u    p    @mip [    ]    \     del  end  pgdn
   lmet a    @dsl h    t    g    y    n    e    o    i    '    ret
-  lsft z    x    @dlg c    v    k    l    ,    .    /    rsft                 up
+  lsft @wsub x   @dlg c    v    k    l    ,    .    /    rsft                 up
   lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
 )
