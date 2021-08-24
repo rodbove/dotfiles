@@ -19,11 +19,11 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
                     , Run Com "echo" ["<fc=#666666>|</fc>"] "|" 0
                     , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 1
                     , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "<fn=1>\xf073 </fn> %b %_d %Y %H:%M" "date" 10
+                    , Run Date "%_d/%m/%y %H:%M" "date" 10
                     , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <icon=%dynamicicon%/> %|% %UnsafeStdinReader%}\
-                    \{ <icon=workstation.xpm/> %cpu% %|% %memory% %|% <fc=#65B2FF>%date%</fc> "
+                    \{ %cpu% %|% %memory% %|% <fc=#65B2FF>%date%</fc> "
        }
