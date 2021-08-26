@@ -15,6 +15,11 @@ export PATH=$PATH:/home/rodrigo/bin
 
 . "$HOME/.cargo/env"
 
+# import work commands if any
+if [ -f ~/.bash_work ]; then
+	. ~/.bash_work;
+fi
+
 # Replace a few ls commands with exa
 alias ls='exa -al --color=always --group-directories-first --icons'
 alias la='exa -a --color=always --group-directories-first --icons'
@@ -51,3 +56,7 @@ alias dcd="docker-compose down"
 alias dps="docker ps"
 alias kubekind="kubectl config use-context kind-kind"
 
+subId() {
+	subscriberId=$(lkpu -n $1 | awk -F"\"" '{print $2}')
+	echo $subscriberId
+}
