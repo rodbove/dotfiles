@@ -37,6 +37,7 @@ alias dir='dir --color=auto'
 alias tarnow='tar -acf '
 alias untar='tar -zxvf '
 alias tmux="tmux -2"
+alias xcp="xclip -selection clipboard"
 
 ## Custom commands/functions
 alias android-studio="~/android-studio/bin/studio.sh"
