@@ -17,13 +17,12 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
                                "--normal","#95FFA4","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Com "echo" ["<fc=#666666>|</fc>"] "|" 0
-                    , Run Com "/home/rodrigo/.config/xmobar/scripts/icon.sh" [] "dynamicicon" 1
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%_d/%m/%y %H:%M" "date" 10
                     , Run UnsafeStdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=%dynamicicon%/> %|% %UnsafeStdinReader%}\
+       , template = " %UnsafeStdinReader%}\
                     \{ %cpu% %|% %memory% %|% <fc=#65B2FF>%date%</fc> "
        }
