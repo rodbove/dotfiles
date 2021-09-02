@@ -45,6 +45,8 @@ alias lens="~/Lens/Lens.AppImage"
 alias nosql="/opt/nosqlbooster-mongodb/nosqlbooster4mongo"
 alias myip="curl ifconfig.me | xclip -selection clipboard"
 alias cobra="~/go/bin/cobra"
+#AWS
+alias awsssh="aws ssm start-session --target"
 # Git
 alias ggpull="git pull origin master"
 alias gcm="git checkout master"

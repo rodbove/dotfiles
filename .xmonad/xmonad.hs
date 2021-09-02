@@ -90,7 +90,7 @@ myDmenuCom = "dmenu_run -nb '#292F37' -nf '#876ec0' -fn 'JuliaMono'"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#222222"
-myFocusedBorderColor = "#CA9265"
+myFocusedBorderColor = "#00c0ff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
