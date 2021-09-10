@@ -67,7 +67,7 @@
   ;; these weird tap-macros make sense with workman layout (you wont need to type the macro this way if you're using qwerty)
   ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
   mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
-  tmc (cmd-button "nohup alacritty -e tmux attach -t code &")
+  tmc (cmd-button "nohup alacritty -e tmux new -s main &")
   xcp C-S-l
 
   ;; Work environment
