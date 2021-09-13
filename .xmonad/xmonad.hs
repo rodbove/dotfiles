@@ -86,7 +86,7 @@ clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
     where i = fromJust $ M.lookup ws myWorkspaceIndices
 
 myDmenuCom :: String
-myDmenuCom = "dmenu_run -nb '#292F37' -nf '#876ec0' -fn 'JuliaMono'"
+myDmenuCom = "dmenu_run -nb '#222222' -nf '#ffc100' -fn 'JuliaMono'"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#222222"

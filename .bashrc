@@ -59,7 +59,3 @@ alias dcd="docker-compose down"
 alias dps="docker ps"
 alias kubekind="kubectl config use-context kind-kind"
 
-subId() {
-	subscriberId=$(lkpu -n $1 | awk -F"\"" '{print $2}')
-	echo $subscriberId
-}
