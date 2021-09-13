@@ -2,7 +2,7 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
        , additionalFonts = ["xft:Mononoki Nerd Font:pixelsize=11:antialias=true:hinting=true"]
        , borderColor = "black"
        , border = TopB
-       , bgColor = "#292F37"
+       , bgColor = "#282828"
        , fgColor = "#E7EDE8"
        , alpha = 255
        , position = Top

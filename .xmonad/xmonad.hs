@@ -90,7 +90,7 @@ myDmenuCom = "dmenu_run -nb '#292F37' -nf '#876ec0' -fn 'JuliaMono'"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#222222"
-myFocusedBorderColor = "#00c0ff"
+myFocusedBorderColor = "#ffc100"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -390,10 +390,10 @@ main = do
       , startupHook        = myStartupHook
       , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x                           -- Receiving xmobar events
-              , ppCurrent = xmobarColor "#358DC0" "" . wrap "" " "           -- Current workspace
-              , ppVisible = xmobarColor "#358DC0" "" . clickable              -- Visible but not current workspace, useful for multiple displays
-              , ppHidden = xmobarColor "#CA9265" "" . wrap "" " " . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#97A8C2" "" . wrap "" " "  . clickable     -- Hidden workspaces (no windows)
+              , ppCurrent = xmobarColor "#ffc100" "" . wrap "" " "           -- Current workspace
+              , ppVisible = xmobarColor "#000000" "" . clickable              -- Visible but not current workspace, useful for multiple displays
+              , ppHidden = xmobarColor "#666" "" . wrap "" " " . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#141414" "" . wrap "" " "  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
