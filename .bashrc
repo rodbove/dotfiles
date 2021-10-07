@@ -13,6 +13,7 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$PATH:/home/rodrigo/bin
 export KUBE_EDITOR=vim
+export EDITOR=vim
 
 . "$HOME/.cargo/env"
 
@@ -60,3 +61,9 @@ alias dcd="docker-compose down"
 alias dps="docker ps"
 alias kubekind="kubectl config use-context kind-kind"
 
+# Specific for laptop with "broken" * key that keeps pressing
+alias drw="xmodmap -e 'keycode 63='"
+
+source '/home/rodrigo/lib/azure-cli/az.completion'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
