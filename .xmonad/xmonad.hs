@@ -83,7 +83,7 @@ myDmenuCom = "dmenu_run -nb '#222222' -nf '#ffc100' -fn 'JuliaMono'"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#222222"
-myFocusedBorderColor = "#ffc100"
+myFocusedBorderColor = "#000"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -310,6 +310,7 @@ myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "picom --fade-delta=0 --no-fading-openclose &"
     spawn "xmodmap -e 'keycode 63='" -- Remove * from keyboard on XMonad startup
+    spawn "/home/rodrigo/Documents/usefulscripts/script/laptopkb/laptopkb-disable.sh" -- Disables laptop keyboard
     spawn "setxkbmap -option caps:super"
 
 main :: IO ()
@@ -333,10 +334,10 @@ main = do
       , startupHook        = myStartupHook
       , logHook = dynamicLogWithPP $ namedScratchpadFilterOutWorkspacePP $ xmobarPP
               { ppOutput = \x -> hPutStrLn xmproc x                           -- Receiving xmobar events
-              , ppCurrent = xmobarColor "#ffc100" "" . wrap "" " "           -- Current workspace
+              , ppCurrent = xmobarColor "#ffc100" "" . wrap "" ""           -- Current workspace
               , ppVisible = xmobarColor "#000000" "" . clickable              -- Visible but not current workspace, useful for multiple displays
-              , ppHidden = xmobarColor "#666" "" . wrap "" " " . clickable -- Hidden workspaces
-              , ppHiddenNoWindows = xmobarColor "#141414" "" . wrap "" " "  . clickable     -- Hidden workspaces (no windows)
+              , ppHidden = xmobarColor "#666" "" . wrap "" "" . clickable -- Hidden workspaces
+              , ppHiddenNoWindows = xmobarColor "#141414" "" . wrap "" ""  . clickable     -- Hidden workspaces (no windows)
               , ppTitle = xmobarColor "#b3afc2" "" . shorten 60               -- Title of active window
               , ppSep =  "<fc=#666666> <fn=1>|</fn> </fc>"                    -- Separator character
               , ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"            -- Urgent workspace
