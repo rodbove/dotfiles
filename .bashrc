@@ -47,6 +47,11 @@ alias lens="~/Lens/Lens.AppImage"
 alias nosql="/opt/nosqlbooster-mongodb/nosqlbooster4mongo"
 alias myip="curl ifconfig.me | xclip -selection clipboard"
 alias cobra="~/go/bin/cobra"
+
+#Laptop specifics 
+alias aa="./Documents/usefulscripts/script/laptopkb/laptopkb-disable.sh"
+alias xmonitor="xrandr --current --output HDMI-1 --primary --output eDP-1 --off"
+
 #AWS
 alias awsssh="aws ssm start-session --target"
 # Git
