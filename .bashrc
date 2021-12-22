@@ -2,10 +2,12 @@
 # ~/.bashrc
 #
 
+source /usr/share/defaults/etc/profile
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -68,7 +70,5 @@ alias kubekind="kubectl config use-context kind-kind"
 
 # Specific for laptop with "broken" * key that keeps pressing
 alias drw="xmodmap -e 'keycode 63='"
-
-source '/home/rodrigo/lib/azure-cli/az.completion'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
