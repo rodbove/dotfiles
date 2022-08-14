@@ -38,3 +38,6 @@ echo "Installing bluetooth utilities...";
 yay -Sy bluez bluez-utils;
 echo "Bluetooth utilities installed, enabling service..."
 sudo systemctl enable bluetooth.service;
+
+# Installs additional useful packages
+yay -S pavucontrol;
