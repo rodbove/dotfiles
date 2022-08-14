@@ -2,8 +2,6 @@
 # ~/.bashrc
 #
 
-source /usr/share/defaults/etc/profile
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -16,8 +14,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/home/rodrigo/bin
 export KUBE_EDITOR=nvim
 export EDITOR=nvim
-
-. "$HOME/.cargo/env"
 
 # import work commands if any
 if [ -f ~/.bash_work ]; then
