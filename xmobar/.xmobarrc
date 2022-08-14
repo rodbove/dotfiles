@@ -24,6 +24,6 @@ Config { font = "xft:JuliaMono:weight=bold:pixelsize=14:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %UnsafeStdinReader%}\
-                    \{ %cpu% %|% %memory% %|% Battery:%battery% %|% <fc=#39BAE6>%date%</fc> "
+       , template = "<icon=/home/rodrigo/.config/xmobar/xpm/dog.xpm /> %UnsafeStdinReader%}\
+                    \{ %|% %memory% %|% <fc=#39BAE6>%date%</fc> "
        }

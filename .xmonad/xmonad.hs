@@ -222,15 +222,6 @@ tall     = renamed [Replace "tall"]
            $ limitWindows 12
            $ mySpacing 4
            $ ResizableTall 1 (3/100) (1/2) []
-magnify  = renamed [Replace "magnify"]
-           $ smartBorders
-           $ windowNavigation
-           $ addTabs shrinkText myTabTheme
-           $ subLayout [] (smartBorders Simplest)
-           $ magnifier
-           $ limitWindows 12
-           $ mySpacing 6
-           $ ResizableTall 1 (3/100) (1/2) []
 monocle  = renamed [Replace "monocle"]
            $ smartBorders
            $ windowNavigation
@@ -293,7 +284,6 @@ myLayoutHook = avoidStruts $ mouseResize $ windowArrange $ T.toggleLayouts float
                $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
              where
                myDefaultLayout =     withBorder myBorderWidth tall
-                                 ||| magnify
                                  ||| noBorders monocle
                                  ||| floats
                                  ||| grid
@@ -309,9 +299,8 @@ myManageHook = composeAll
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "picom --fade-delta=0 --no-fading-openclose &"
-    spawn "xmodmap -e 'keycode 63='" -- Remove * from keyboard on XMonad startup
-    spawn "/home/rodrigo/Documents/usefulscripts/script/laptopkb/laptopkb-disable.sh" -- Disables laptop keyboard
     spawn "setxkbmap -option caps:super"
+    spawn "setxkbmap us -variant workman-intl"
 
 main :: IO ()
 main = do
