@@ -7,13 +7,21 @@
 
 # PS1='[\u@\h \W]\$ '
 
-export PATH=$PATH:/home/rodrigo/bin
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/usr/local/go/bin
+export GO111MODULE=on
+export GOPATH=$HOME/go/bin/
+export GOMODCACHE=$HOME/go/pkg/mod/
 export KUBE_EDITOR=nvim
 export EDITOR=nvim
 
-# import work commands if any
-if [ -f ~/.bash_work ]; then
-	. ~/.bash_work;
+# import company specific commands if any
+if [ -f ~/.bash_krz ]; then
+	. ~/.bash_krz;
+fi
+
+if [ -f ~/.bash_abi ]; then
+	. ~/.bash_abi;
 fi
 
 # Replace a few ls commands with exa
@@ -24,7 +32,7 @@ alias lt='exa -aT --color=always --group-directories-first --icons'
 alias l.="exa -a | egrep '^\.'"
 
 # Replace cat for bat
-alias cat='bat --style header --style rules --style snip --style changes --style header'
+alias cat='bat --style header --style snip --style changes --style header'
 
 # Useful/Common
 alias ..='cd ..'
@@ -34,6 +42,7 @@ alias tarnow='tar -acf '
 alias untar='tar -zxvf '
 alias tmux="tmux -2"
 alias xcp="xclip -selection clipboard"
+alias src="source ~/.bashrc"
 
 ## Custom commands/functions
 alias android-studio="~/android-studio/bin/studio.sh"
@@ -44,6 +53,9 @@ alias myip="curl ifconfig.me | xclip -selection clipboard"
 #Laptop specifics 
 alias aa="./Documents/usefulscripts/script/laptopkb/laptopkb-disable.sh"
 alias xmonitor="xrandr --current --output HDMI-1 --primary --output eDP-1 --off"
+
+# Bluetooth utils
+alias btch="bluetoothctl connect 88:C9:E8:2C:37:4C" # Bluetooth connect to Sony Headset
 
 #AWS
 alias awsssh="aws ssm start-session --target"
@@ -57,10 +69,19 @@ alias dcu="docker-compose up"
 alias dcud="docker-compose up -d"
 alias dcd="docker-compose down"
 alias dps="docker ps"
+alias dl="docker logs $1 -f -t"
+alias drm="docker rm -f"
+alias deb="docker exec -it $1 bash"
 alias kubekind="kubectl config use-context kind-kind"
+# Terraform
+alias tf="terraform"
+alias tfv="terraform validate"
+alias tfp="terraform plan -out tfplan"
+alias tfa="terraform apply tfplan"
 
 # Specific for laptop with "broken" * key that keeps pressing
-alias drw="xmodmap -e 'keycode 63='"
+alias asdf="setxkbmap -option caps:super; setxkbmap us -variant workman-intl"
+alias asdfj="setxkbmap -option caps:super; setxkbmap us -variant workman-intl; ./.screenlayout/default-kruzer.sh"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -68,3 +89,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
+
+# Source config
+alias sourceb="source $HOME/.bashrc"
+. "$HOME/.cargo/env"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
