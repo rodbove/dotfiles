@@ -1,0 +1,113 @@
+#| --------------------------------------------------------------------------
+                     KMonad: US ansi ten-key-less template
+
+  This file contains the `defsrc` configuration for a standard US-ansi
+  ten-key-less keyboard. Modelled on a standard DAS-keyboard 100% with the
+  numpad removed. Copy out the 'defsrc' layer to start your own keyboard
+  configuration. Copy out the `deflayer` template to easily start a new layer
+  with matching `transparent` buttons.
+
+(deflayer name
+  _    _    _    _    _    _    _    _    _    _    _    _    _          _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _     _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _                    _
+  _    _    _              _              _    _    _    _               _    _    _
+)
+
+  -------------------------------------------------------------------------- |#
+;; Config
+(defcfg
+  ;; For Linux
+  input  (device-file "/dev/input/by-id/usb-Kingston_HyperX_Alloy_FPS_Pro_Mechanical_Gaming_Keyboard-if02-event-kbd")
+  output (uinput-sink "My KMonad output"
+    ;; To understand the importance of the following line, see the section on
+    ;; Compose-key sequences at the near-bottom of this file.
+    "/usr/bin/sleep 1 && /usr/bin/setxkbmap -option compose:ralt")
+  ;; cmp-seq ralt    ;; Set the compose key to `RightAlt'
+  ;; cmp-seq-delay 5 ;; 5ms delay between each compose-key sequence press
+
+  fallthrough true
+
+  allow-cmd true
+)
+
+(defsrc
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        kprt slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
+  caps a    s    h    t    g    y    n    e    o    i    '    ret
+  lsft z    x    m    c    v    k    l    ,    .    /    rsft                 up
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
+)
+
+(defalias
+  ;; layout togglers
+  one (layer-switch default)
+  uti (layer-switch utils) ;; switches to utils layer
+  tut (layer-toggle utils) ;; toggles to utils layer
+  qwt (layer-switch qwerty)
+
+  ;; Custom keybinds
+  kil S-M-v
+
+  ;; Keybinds for changing workspaces on XMonad
+  m1 M-1
+  m2 M-2
+  m3 M-3
+  m4 M-4
+  m5 M-5
+  m6 M-6
+  m7 M-7
+  m8 M-8
+  m9 M-9
+
+  ;; Utils (or not) by "section"
+  ld (tap-next-release spc @tut) ;; turns spc into a "leader" key for utils
+  mip (cmd-button "curl ifconfig.me | xclip -selection clipboard") ;; copies my ip to clipboard
+  tmc (cmd-button "nohup alacritty -e tmux new-session -A main &")
+  xcp C-S-l
+
+  ;; Work environment
+  sub (cmd-button "xclip -o | xargs lkpu -s | awk -F '>' '{print $2}' | awk '{ sub(/^[ \t]+/, \"\"); print}' | xclip -selection clipboard") ;; Pipes selected ObjectId into cli for getting data (work use only)
+  sid (cmd-button "xclip -o | xargs lkpu -n | awk -F '>' '{print $2}' | awk '{ sub(/^[ \t]+/, \"\"); print}' | xclip -selection clipboard") ;; Pipes selected name into cli for getting the ObjectId (work use only)
+  wsub #(@xcp @sub)
+  wid #(@xcp @sid)
+
+  ;; Specific for apps
+  ctb (tap-next C-t lctl) ;; Actually types ctrl + b on tmux
+
+  ;; DOCKER
+  ;; these weird tap-macros make sense with workman layout (you wont need to type the macro this way if you're using qwerty)
+  dsl (tap-macro w l v n k e spc s k e b ; v k spc m s) ;; docker service ls
+  dlg (tap-macro w l v n k e spc s k e b ; v k spc m l g s spc - u spc - f spc) ;; docker service logs -f -t
+)
+
+(deflayer default
+  esc  @uti @qwt f3   f4   f5   f6   f7   f8   f9   f10  @wsub @wid      kprt slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    d    r    w    b    j    f    u    p    ;    [    ]    \     del  end  pgdn
+  lmet a    s    h    t    g    y    n    e    o    i    '    ret
+  lsft z    x    m    c    v    k    l    ,    .    /    rsft                 up
+  @ctb lmet lalt           @ld            ralt rmet cmp  rctl            left down rght
+)
+
+;; they forced me; mostly for reference when "translating" words as if they were typed in qwerty
+(deflayer qwerty
+  esc  @one f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12       kprt slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \     del  end  pgdn
+  lmet a    s    d    f    g    h    j    k    l    ;    '    ret
+  lsft z    x    c    v    b    n    m    ,    .    /    rsft                 up
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
+)
+
+(deflayer utils
+  esc  @one @qwt f3   f4   f5   f6   f7   f8   f9   f10  @dsl  @kil       kprt slck pause
+  grv  @m1  @m2  @m3  @m4  @m5  @m6  @m7  @m8  @m9  0    -    =    bspc  ins  home pgup
+  tab  @kil d    r    w    b    j    @tmc u    p    @mip [    ]    \     del  end  pgdn
+  lmet a    @dsl h    t    g    y    n    e    o    i    '    ret
+  lsft z    x   @dlg  c    v    k    l    ,    .    /    rsft                 up
+  lctl lmet lalt           spc            ralt rmet cmp  rctl            left down rght
+)

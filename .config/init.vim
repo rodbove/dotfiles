@@ -1,18 +1,21 @@
 call plug#begin()
+Plug 'navarasu/onedark.nvim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'preservim/nerdtree'
-Plug 'ayu-theme/ayu-vim'
+Plug 'wojciechkepka/vim-github-dark'
 Plug 'itchyny/vim-gitbranch'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
+Plug 'jceb/vim-orgmode'
 call plug#end()
 
 let g:lightline = {
-    \ 'colorscheme': 'ayu',
+    \ 'colorscheme': 'onedark',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -26,9 +29,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-set background=dark
-let ayucolor="mirage"
-colorscheme ayu
+colorscheme onedark
 
 filetype plugin indent on
 set tabstop=2

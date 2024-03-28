@@ -24,6 +24,41 @@ if [ -f ~/.bash_abi ]; then
 	. ~/.bash_abi;
 fi
 
+# Functions
+# Define a function to start tmux sessions with specific directories for certain names
+start_ts() {
+  for session_name in "$@"; do
+    # Check if the session already exists
+    tmux has-session -t "$session_name" 2>/dev/null
+
+    if [ $? != 0 ]; then
+      # The session does not exist, decide the working directory based on session name
+      case "$session_name" in
+        abi)
+          working_dir="~/ABI"
+          ;;
+        krz)
+          working_dir="~/Kruzer"
+          ;;
+        *)
+          working_dir="~" # Default directory
+          ;;
+      esac
+
+      # Create the session detached in the specified working directory
+      tmux new-session -s "$session_name" -d -c "$working_dir"
+
+      # If it's the first session, attach to it
+      if [ "$session_name" == "$1" ]; then
+        tmux attach-session -t "$session_name"
+      fi
+    else
+      echo "Session $session_name already exists."
+    fi
+  done
+}
+
+
 # Replace a few ls commands with exa
 alias ls='exa -al --color=always --group-directories-first --icons'
 alias la='exa -a --color=always --group-directories-first --icons'
