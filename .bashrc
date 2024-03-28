@@ -94,11 +94,14 @@ alias btch="bluetoothctl connect 88:C9:E8:2C:37:4C" # Bluetooth connect to Sony 
 
 #AWS
 alias awsssh="aws ssm start-session --target"
+
 # Git
-alias ggpull="git pull origin master"
-alias gcm="git checkout master"
+alias gcm="git commit -m"
+alias gcam="git commit -am"
+alias gp="git pull "
 alias gs="git stash"
 alias gsa="git stash apply"
+
 # Docker
 alias dcu="docker-compose up"
 alias dcud="docker-compose up -d"
